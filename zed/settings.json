@@ -7,15 +7,42 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "assistant": {
-    "provider": {
-      "name": "openai",
-      "default_model": "gpt-3.5-turbo",
+  "language_models": {
+    "openai": {
       "available_models": []
     }
   },
+  "assistant": {
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-3.5-turbo"
+    },
+    "version": "2",
+    "provider": null
+  },
   "theme": "Dracula",
   "relative_line_numbers": true,
+  "project_panel": {
+    "scrollbar": {
+      "show": "never"
+    }
+  },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_code_navigation": true
+  },
+  "file_scan_exclusions": [
+      "**/.git",
+      "**/.svn",
+      "**/.hg",
+      "**/CVS",
+      "**/.DS_Store",
+      "**/Thumbs.db",
+      "**/.classpath",
+      "**/.settings",
+      "**/.ruby-lsp"
+  ],
   "experimental.theme_overrides": {
     "text": "#f7f7f8ff",
     "panel.background": "#21242bff",
@@ -46,7 +73,7 @@
     "terminal.ansi.blue": "#81a2be",
     "terminal.ansi.magenta": "#b294bb",
     "terminal.ansi.cyan": "#8abeb7",
-    "terminal.ansi.white" : "#c5c8c6",
+    "terminal.ansi.white": "#c5c8c6",
 
     "terminal.ansi.bright_black": "#666666",
     "terminal.ansi.bright_red": "#d54e53",
@@ -64,10 +91,9 @@
     "terminal.ansi.dim_blue": "#556a7d",
     "terminal.ansi.dim_magenta": "#75617b",
     "terminal.ansi.dim_cyan": "#5b7d78",
-    "terminal.ansi.dim_white": "#828482",
+    "terminal.ansi.dim_white": "#828482"
   },
   "wrap_guides": [120],
-  "current_line_highlight": "line",
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false
@@ -78,14 +104,12 @@
   "buffer_line_height": {
     "custom": 1.3
   },
-  "nightly": {
-    "enabled": true
-  },
   "load_direnv": "shell_hook",
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
-    "use_multiline_find": true
+    "use_multiline_find": true,
+    "use_smartcase_find": true
   },
   "git": {
     "inline_blame": {
@@ -97,7 +121,7 @@
     "ruby-lsp": {
       "initialization_options": {
         "diagnostics": false,
-        "formatting": false
+        "formatting": true
       }
     },
     "rubocop": {
@@ -136,6 +160,6 @@
   },
   "terminal": {
     "copy_on_select": false,
-    "line_height": "standard",
+    "line_height": "standard"
   }
 }

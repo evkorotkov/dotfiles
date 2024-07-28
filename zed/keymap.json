@@ -45,15 +45,25 @@
     }
   },
   {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrev",
+    }
+  },
+  {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "space w l": ["workspace::ActivatePane", 0],
+      "space f f": "file_finder::Toggle",
+      "space f b": "file_finder::Toggle",
+      "space f o": "file_finder::Toggle",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
       "r": "project_panel::Rename",
       "x": "project_panel::Cut",
       "c": "project_panel::Copy",
-      "v": "project_panel::Paste",
+      "p": "project_panel::Paste",
       "shift-j": "menu::SelectNext",
       "shift-k": "menu::SelectPrev",
     }
