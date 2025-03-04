@@ -13,36 +13,7 @@ return {
           local opts = { buffer = event.buf }
           local map = vim.keymap.set
 
-          local function go_to_unique_definition()
-            vim.lsp.buf_request(0, 'textDocument/definition', vim.lsp.util.make_position_params(), function(_, result, _, _)
-              if not result or vim.tbl_isempty(result) then
-                print("No definitions found")
-                return
-              end
-
-              local unique_results = {}
-              local seen = {}
-
-              for _, def in ipairs(result) do
-                local uri = def.uri or def.targetUri
-                seen[uri] = def
-              end
-
-              for _, def in pairs(seen) do
-                table.insert(unique_results, def)
-              end
-
-              if #unique_results == 1 then
-                vim.lsp.util.jump_to_location(unique_results[1], 'utf-8')
-              else
-                local items = vim.lsp.util.locations_to_items(unique_results, 'utf-8')
-                vim.fn.setqflist({}, 'r', { title = 'LSP Definitions', items = items })
-                vim.api.nvim_command("copen")
-              end
-            end)
-          end
-
-          map('n', 'gd', go_to_unique_definition, opts)
+          map('n', 'gd', vim.lsp.buf.definition, opts)
           map('n', 'gD', vim.lsp.buf.declaration, opts)
           map('n', 'gI', vim.lsp.buf.implementation, opts)
           map('n', 'K', vim.lsp.buf.hover, opts)
@@ -67,21 +38,17 @@ return {
       --
       -- Diagnostics UI
       --
-      local signs = {
-        { name = 'DiagnosticSignError', text = '' },
-        { name = 'DiagnosticSignWarn', text = '' },
-        { name = 'DiagnosticSignHint', text = '' },
-        { name = 'DiagnosticSignInfo', text = '' },
-      }
-
-      for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
-      end
-
       vim.diagnostic.config({
         underline = true,
         virtual_text = false,
-        signs = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.HINT] = '',
+            [vim.diagnostic.severity.INFO] = '',
+          },
+        },
         update_in_insert = false,
         float = {
           source = "always",
