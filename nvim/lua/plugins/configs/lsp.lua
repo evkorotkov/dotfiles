@@ -146,7 +146,6 @@ return {
 
         ruby_lsp = {
           filetypes = { 'ruby', 'eruby', 'slim' },
-          cmd = { 'ruby-lsp' },
         },
 
         yamlls = {
