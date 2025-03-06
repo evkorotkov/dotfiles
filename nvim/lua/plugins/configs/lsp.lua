@@ -23,9 +23,9 @@ return {
           map('n', '<leader>rn', vim.lsp.buf.rename, opts)
           map('n', '[d', vim.diagnostic.goto_prev)
           map('n', ']d', vim.diagnostic.goto_next)
-          map('n', '<leader>to', vim.diagnostic.setqflist)
-          map('n', '<leader>tl', vim.diagnostic.open_float)
-          map({ 'n', 'v' }, '<leader>ta', vim.lsp.buf.code_action, opts)
+          map('n', '<leader>dl', vim.diagnostic.setqflist)
+          map('n', '<leader>do', vim.diagnostic.open_float)
+          map({ 'n', 'v' }, '<leader>da', vim.lsp.buf.code_action, opts)
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
