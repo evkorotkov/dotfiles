@@ -37,3 +37,10 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set('n', '<leader>q', ':wincmd p | q<CR>', { silent = true })
 
 vim.keymap.set('n', "<leader>s", ':SwitchCase<CR>')
+
+--
+-- Toggle terminal
+--
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('n', '<leader>tt', require("plugins.toggle_term").toggle_terminal, { desc = 'Toggle terminal' })
+vim.keymap.set('t', '<leader>tt', '<C-\\><C-n><cmd>lua require("plugins.toggle_term").toggle_terminal()<CR>', { desc = 'Toggle terminal' })
