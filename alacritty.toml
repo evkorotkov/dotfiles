@@ -1,6 +1,9 @@
 [general]
 import = ["~/.config/alacritty/rose-pine-moon.toml"]
 
+[colors]
+cursor = { text = "CellBackground", cursor = "CellForeground" }
+
 [env]
 TERM = "alacritty"
 IS_ALACRITTY = "1"
