@@ -17,7 +17,6 @@ x = 0
 y = 3
 
 [window]
-startup_mode = "Maximized"
 option_as_alt = "BOTH"
 
 #
