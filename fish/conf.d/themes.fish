@@ -16,6 +16,10 @@ function update_theme --on-variable macos_theme
     --color=border:#44415a,header:#3e8fb0,gutter:#232136
     --color=spinner:#f6c177,info:#9ccfd8
     --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+
+    if set -q IS_ALACRITTY
+      sed -i '' 's/rose-pine-dawn/rose-pine-moon/' ~/.dotfiles/alacritty.toml
+    end
   else if [ "$macos_theme" = "light" ]
     set -Ux FZF_DEFAULT_OPTS "
     --color=fg:#797593,bg:#faf4ed,hl:#d7827e
@@ -23,6 +27,10 @@ function update_theme --on-variable macos_theme
     --color=border:#dfdad9,header:#286983,gutter:#faf4ed
     --color=spinner:#ea9d34,info:#56949f
     --color=pointer:#907aa9,marker:#b4637a,prompt:#797593"
+
+    if set -q IS_ALACRITTY
+      sed -i '' 's/rose-pine-moon/rose-pine-dawn/' ~/.dotfiles/alacritty.toml
+    end
   end
 end
 
