@@ -6,7 +6,6 @@ cursor = { text = "CellBackground", cursor = "CellForeground" }
 
 [env]
 TERM = "alacritty"
-IS_ALACRITTY = "1"
 
 [font]
 builtin_box_drawing = true
