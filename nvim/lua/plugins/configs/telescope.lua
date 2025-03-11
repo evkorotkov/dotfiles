@@ -134,9 +134,8 @@ return {
       vim.keymap.set('n', '<leader>ff', function()
         builtin.buffers(themes.get_dropdown({
           previewer = false,
-          ignore_current_buffer = true,
           sort_mru = true,
-          -- initial_mode = "normal",
+          initial_mode = "normal",
         }))
       end)
       vim.keymap.set('n', '<leader>e', ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { desc = 'files [e]xplorer' })
