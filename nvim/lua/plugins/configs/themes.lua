@@ -14,6 +14,9 @@ return {
               italic = false,
               transparency = false,
             },
+            highlight_groups = {
+              ["@string.special.symbol.ruby"] = { fg = "gold" },
+            },
           })
         end,
       },
@@ -45,9 +48,11 @@ return {
       end
 
       if is_dark_mode() then
-        vim.cmd("colorscheme duskfox")
+        -- vim.cmd("colorscheme duskfox")
+        vim.cmd("colorscheme rose-pine-moon")
       else
-        vim.cmd("colorscheme dawnfox")
+        -- vim.cmd("colorscheme dawnfox")
+        vim.cmd("colorscheme rose-pine-dawn")
       end
     end,
     config = function()
@@ -56,14 +61,16 @@ return {
         update_interval = 1000,
         set_dark_mode = function()
           vim.api.nvim_set_option_value('background', 'dark', {})
-          vim.cmd("colorscheme duskfox")
+          -- vim.cmd("colorscheme duskfox")
+          vim.cmd("colorscheme rose-pine-moon")
 
           -- https://github.com/neovim/neovim/issues/23590
           vim.cmd('hi! link CurSearch Search')
         end,
         set_light_mode = function()
           vim.api.nvim_set_option_value('background', 'light', {})
-          vim.cmd("colorscheme dawnfox")
+          -- vim.cmd("colorscheme dawnfox")
+          vim.cmd("colorscheme rose-pine-dawn")
 
           -- https://github.com/neovim/neovim/issues/23590
           vim.cmd('hi! link CurSearch Search')
