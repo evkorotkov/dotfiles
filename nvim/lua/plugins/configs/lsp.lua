@@ -57,10 +57,15 @@ return {
         end
       })
 
+      -- Disable for sourcekit because of the issue:
+      -- https://github.com/brenoprata10/nvim-highlight-colors/issues/123
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          client.server_capabilities.semanticTokensProvider = nil
+
+          if client and client.name == 'sourcekit' then
+            client.server_capabilities.colorProvider = false
+          end
         end,
       })
 
