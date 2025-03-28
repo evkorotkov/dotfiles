@@ -23,8 +23,8 @@ return {
           map('n', '<leader>rn', vim.lsp.buf.rename, opts)
           map('n', '[d', vim.diagnostic.goto_prev)
           map('n', ']d', vim.diagnostic.goto_next)
-          map('n', '<leader>dq', vim.diagnostic.setqflist)
-          map('n', '<leader>dd', vim.diagnostic.open_float)
+          map('n', '<leader>t', vim.diagnostic.setqflist)
+          map('n', '<leader>x', vim.diagnostic.open_float)
           map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
 
           local function client_supports_method(client, method, bufnr)
@@ -53,12 +53,6 @@ return {
                 vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
               end,
             })
-          end
-
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('n', '<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, opts)
           end
         end
       })

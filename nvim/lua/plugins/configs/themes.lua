@@ -5,34 +5,43 @@ return {
     priority = 1000,
     dependencies = {
       {
-        "rose-pine/neovim",
-        name = "rose-pine",
+        'maxmx03/solarized.nvim',
         config = function()
-          require("rose-pine").setup({
-            styles = {
-              bold = false,
-              italic = false,
-              transparency = false,
-            },
-            highlight_groups = {
-              ["@string.special.symbol.ruby"] = { fg = "gold" },
-            },
+          require('solarized').setup({
+            highlights = {
+              NeoTreeDirectoryName = { fg = "#268bd2" },
+              NeoTreeIndentMarker = { fg = "#586e75" },
+              NeoTreeDirectoryIcon = { fg = "#268bd2" },
+            }
           })
-        end,
+        end
       },
       {
-        "EdenEast/nightfox.nvim",
+        'Mofiqul/dracula.nvim',
         config = function()
-          require('nightfox').setup({
-            groups = {
-              all = {
-                ["@string.special.symbol.ruby"] = { fg = "palette.green" },
-                ["@variable.member.ruby"] = { fg = "palette.orange" },
-                ["rubyTodo"] = { fg = "palette.comment", bg = "bg4" }
-              }
+          local dracula = require("dracula")
+          local colors = dracula.colors()
+          dracula.setup({
+            italic_comment = false,
+            overrides = {
+              NeoTreeGitUnstaged = { fg = colors.cyan },
+              NeoTreeGitModified = { fg = colors.cyan },
+
+              LspReferenceText = { bg = colors.visual, },
+              LspReferenceRead = { bg = colors.visual, },
+              LspReferenceWrite = { bg = colors.visual, },
+
+              rubyTodo = { fg = colors.comment, bg = colors.visual },
+
+              DiffAdd = { link = "NeogitDiffAdd" },
+              DiffDelete = { link = "NeogitDiffDelete" },
+              DiffChange = { link = "NeogitDiffAdd" },
+              DiffText = { link = "NeogitDiffAdd" },
+
+              CopilotSuggestion = { fg = "#908caa" },
             },
           })
-        end,
+        end
       }
     },
     init = function()
@@ -48,11 +57,11 @@ return {
       end
 
       if is_dark_mode() then
-        -- vim.cmd("colorscheme duskfox")
-        vim.cmd("colorscheme rose-pine-moon")
+        vim.api.nvim_set_option_value('background', 'dark', {})
+        vim.cmd("colorscheme dracula")
       else
-        -- vim.cmd("colorscheme dawnfox")
-        vim.cmd("colorscheme rose-pine-dawn")
+        vim.api.nvim_set_option_value('background', 'light', {})
+        vim.cmd("colorscheme solarized")
       end
     end,
     config = function()
@@ -61,16 +70,14 @@ return {
         update_interval = 1000,
         set_dark_mode = function()
           vim.api.nvim_set_option_value('background', 'dark', {})
-          -- vim.cmd("colorscheme duskfox")
-          vim.cmd("colorscheme rose-pine-moon")
+          vim.cmd("colorscheme dracula")
 
           -- https://github.com/neovim/neovim/issues/23590
           vim.cmd('hi! link CurSearch Search')
         end,
         set_light_mode = function()
           vim.api.nvim_set_option_value('background', 'light', {})
-          -- vim.cmd("colorscheme dawnfox")
-          vim.cmd("colorscheme rose-pine-dawn")
+          vim.cmd("colorscheme solarized")
 
           -- https://github.com/neovim/neovim/issues/23590
           vim.cmd('hi! link CurSearch Search')
