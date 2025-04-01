@@ -71,23 +71,16 @@ return {
       else
         set_light_theme()
       end
+
+      -- https://github.com/neovim/neovim/issues/23590
+      vim.cmd('hi! link CurSearch Search')
     end,
     config = function()
       local auto_dark_mode = require('auto-dark-mode')
       auto_dark_mode.setup({
         update_interval = 1000,
-        set_dark_mode = function()
-          set_dark_theme()
-          -- https://github.com/neovim/neovim/issues/23590
-          vim.cmd('hi! link CurSearch Search')
-        end,
-        set_light_mode = function()
-          set_light_theme()
-
-          -- https://github.com/neovim/neovim/issues/23590
-          vim.cmd('hi! link CurSearch Search')
-        end,
-
+        set_dark_mode = set_dark_theme,
+        set_light_mode = set_light_theme,
       })
     end
   }
