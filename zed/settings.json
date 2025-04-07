@@ -76,7 +76,7 @@
     }
   },
   "completions": {
-    "words": "enabled"
+    // "words": "enabled"
   },
 
   "pane_split_direction_horizontal": "down",

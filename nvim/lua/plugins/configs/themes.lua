@@ -41,6 +41,10 @@ return {
               LspReferenceRead = { bg = colors.visual, },
               LspReferenceWrite = { bg = colors.visual, },
 
+              TelescopePromptBorder = { fg = colors.gutter_fg, },
+              TelescopeResultsBorder = { fg = colors.gutter_fg, },
+              TelescopePreviewBorder = { fg = colors.gutter_fg, },
+
               rubyTodo = { fg = colors.comment, bg = colors.visual },
 
               DiffAdd = { link = "NeogitDiffAdd" },
