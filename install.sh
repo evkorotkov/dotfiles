@@ -31,6 +31,10 @@ echo "Configuring lazygit"
 mkdir -p $HOME/.config/lazygit
 ln -s $HOME/.dotfiles/lazygit/config.yml $HOME/.config/lazygit/
 
+echo "Configuring gitui"
+mkdir -p $HOME/.config/gitui
+ln -s $HOME/.dotfiles/gitui/key_bindings.ron $HOME/.config/gitui/
+
 echo "Configure Bin"
 mkdir -p $HOME/.bin
 ln -s $HOME/.dotfiles/bin/tmux-sessionizer $HOME/.bin/

@@ -1,10 +1,12 @@
 return {
   {
-    "iguanacucumber/magazine.nvim",
-    name = "nvim-cmp", -- Otherwise highlighting gets messed up
+    "hrsh7th/nvim-cmp",
+    -- "iguanacucumber/magazine.nvim",
+    -- name = "nvim-cmp", -- Otherwise highlighting gets messed up
     event = "InsertEnter",
     config = function()
       local cmp = require('cmp')
+      local lspkind = require('lspkind')
       local cmp_select = {behavior = cmp.SelectBehavior.Select}
       local cmp_insert = {behavior = cmp.SelectBehavior.Insert}
 
@@ -27,7 +29,19 @@ return {
         {
           { name = 'cmdline', keyword_length = 3 },
           { name = 'cmdline_history', keyword_length = 3 },
-        })
+        }),
+        formatting = {
+          fields = {'abbr'},
+        },
+
+        -- window = {
+        --   completion = {
+        --     border = nil,
+        --   },
+        --   documentation = {
+        --     border = nil,
+        --   },
+        -- },
       })
 
       local editor_sources = {
@@ -46,6 +60,7 @@ return {
           },
           keyword_length = 2,
         },
+        { name = 'emoji' },
       }
 
       cmp.setup({
@@ -80,23 +95,33 @@ return {
           end, {'i', 's'}),
         },
         formatting = {
-          fields = {'menu', 'abbr', 'kind'},
-          format = function(entry, item)
-            local menu_icon = {
-              nvim_lsp = '󰘧 ',
-              luasnip = ' ',
-              buffer = ' ',
-              path = ' ',
-              copilot = ' ',
-              nvim_lua = '󰢱 ',
-            }
-
-            -- truncate menu entries
-            item.abbr = string.sub(item.abbr, 1, 40)
-
-            item.menu = menu_icon[entry.source.name]
-            return item
-          end,
+          fields = {'kind', 'abbr'},
+          -- format = function(entry, item)
+          --   local menu_icon = {
+          --     nvim_lsp = '󰘧 ',
+          --     luasnip = ' ',
+          --     buffer = ' ',
+          --     path = ' ',
+          --     copilot = ' ',
+          --     nvim_lua = '󰢱 ',
+          --   }
+          --
+          --   -- truncate menu entries
+          --   item.abbr = string.sub(item.abbr, 1, 40)
+          --
+          --   item.menu = menu_icon[entry.source.name]
+          --   return item
+          -- end,
+          format = lspkind.cmp_format({
+            mode = 'symbol',  -- show only symbol annotations
+            maxwidth = 100,
+            ellipsis_char = '...',
+            -- before = function (entry, item)
+            --   item.abbr = string.sub(item.abbr, 1, 40)
+            --
+            --   return item
+            -- end
+          })
         },
         window = {
           completion = cmp.config.window.bordered({
@@ -125,6 +150,8 @@ return {
       {'hrsh7th/cmp-nvim-lua'},
       {'saadparwaiz1/cmp_luasnip'},
       {'hrsh7th/cmp-cmdline'},
+      {'hrsh7th/cmp-emoji'},
+      {'onsails/lspkind.nvim'} ,
 
       -- Snippets
       {'L3MON4D3/LuaSnip'},
