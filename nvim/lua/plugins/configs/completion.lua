@@ -84,7 +84,6 @@ return {
           },
           keyword_length = 2,
         },
-        -- { name = 'emoji' },
       }
 
       cmp.setup({
@@ -123,7 +122,7 @@ return {
           format = function(_, item)
             local icon = kind_icons[item.kind]
 
-            item.abbr = string.sub(item.abbr, 1, 40)
+            item.abbr = string.sub(item.abbr, 1, 50)
             item.kind = icon
 
             return item
@@ -146,6 +145,12 @@ return {
       end)
 
       require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+
+      require("cmp").setup.filetype({ "gitcommit", "markdown" }, {
+        sources = {
+          { name = "emoji"}
+        }
+      })
     end,
     dependencies = {
       -- Autocompletion
@@ -155,7 +160,7 @@ return {
       {'hrsh7th/cmp-nvim-lua'},
       {'saadparwaiz1/cmp_luasnip'},
       {'hrsh7th/cmp-cmdline'},
-      -- {'hrsh7th/cmp-emoji'},
+      {'hrsh7th/cmp-emoji'},
 
       -- Snippets
       {'L3MON4D3/LuaSnip'},
