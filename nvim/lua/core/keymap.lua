@@ -38,6 +38,8 @@ vim.keymap.set('n', '<leader>q', ':wincmd p | q<CR>', { silent = true })
 
 vim.keymap.set('n', "<leader>w", ':SwitchCase<CR>')
 
+vim.keymap.set('n', "<leader>ii", [[OAI!<ESC>:lua require('Comment.api').toggle.linewise.current()<CR>A ]])
+
 --
 -- Toggle terminal
 --
